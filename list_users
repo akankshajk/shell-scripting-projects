@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# GitHub Organization and Repository Name
+ORG_NAME="your-org-name"
+REPO_NAME="your-repo-name"
+GITHUB_TOKEN="your-github-token" # Generate a token with repo read permissions
+
+# Fetch the list of collaborators
+echo "Fetching users with access to $REPO_NAME in $ORG_NAME..."
+curl -s -H "Authorization: token $GITHUB_TOKEN" \
+     "https://api.github.com/repos/$ORG_NAME/$REPO_NAME/collaborators" | jq -r '.[].login'
